@@ -34,6 +34,8 @@
             this.tbxResult = new System.Windows.Forms.TextBox();
             this.btnConvert = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbxDelimiter = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnSelectFile
@@ -58,7 +60,7 @@
             // 
             // btnCopyToClipboard
             // 
-            this.btnCopyToClipboard.Location = new System.Drawing.Point(140, 49);
+            this.btnCopyToClipboard.Location = new System.Drawing.Point(444, 48);
             this.btnCopyToClipboard.Margin = new System.Windows.Forms.Padding(4);
             this.btnCopyToClipboard.Name = "btnCopyToClipboard";
             this.btnCopyToClipboard.Size = new System.Drawing.Size(135, 31);
@@ -68,6 +70,7 @@
             // 
             // tbxResult
             // 
+            this.tbxResult.AllowDrop = true;
             this.tbxResult.Location = new System.Drawing.Point(11, 91);
             this.tbxResult.Multiline = true;
             this.tbxResult.Name = "tbxResult";
@@ -76,7 +79,7 @@
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(11, 49);
+            this.btnConvert.Location = new System.Drawing.Point(324, 48);
             this.btnConvert.Margin = new System.Windows.Forms.Padding(4);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(112, 31);
@@ -95,11 +98,36 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "注意事項:\r\n1.主檔名是類別名稱\r\n2.csv 第一行 為欄位名稱";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 16);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "分隔符號:";
+            // 
+            // cbxDelimiter
+            // 
+            this.cbxDelimiter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDelimiter.FormattingEnabled = true;
+            this.cbxDelimiter.Items.AddRange(new object[] {
+            "逗號",
+            "Tab"});
+            this.cbxDelimiter.Location = new System.Drawing.Point(96, 51);
+            this.cbxDelimiter.Name = "cbxDelimiter";
+            this.cbxDelimiter.Size = new System.Drawing.Size(62, 24);
+            this.cbxDelimiter.TabIndex = 8;
+            this.cbxDelimiter.SelectedIndexChanged += new System.EventHandler(this.cbxDelimiter_SelectedIndexChanged);
+            // 
             // MainForm
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 482);
+            this.Controls.Add(this.cbxDelimiter);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxResult);
             this.Controls.Add(this.btnCopyToClipboard);
@@ -110,6 +138,8 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "CsvToNewInstance";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +153,8 @@
         private System.Windows.Forms.TextBox tbxResult;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbxDelimiter;
     }
 }
 

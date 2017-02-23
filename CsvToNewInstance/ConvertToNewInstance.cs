@@ -18,12 +18,12 @@ namespace CsvToNewInstance
         {
             if (LineCount == 0)
             {
-                var tmpFields = line.Split(',');
+                var tmpFields = line.Split(Delimiter);
                 Fields = tmpFields.ToList();
             }
             else
             {
-                ResultByList.Add(CombineEachLine(line.Split(',').ToList()));
+                ResultByList.Add(CombineEachLine(line.Split(Delimiter).ToList()));
             }
 
             LineCount++;
@@ -36,7 +36,7 @@ namespace CsvToNewInstance
             result += $"new {ClassName} {{ ";
             var fieldValue = Fields.Zip(values, (f, v) => $"{f} = {v}, ");
             result += string.Concat(fieldValue);
-            result +=  $"}},\n";
+            result += $"}},\n";
 
             return result;
         }
@@ -71,6 +71,12 @@ namespace CsvToNewInstance
             }
         }
 
+        public char Delimiter
+        {
+            get { return this._delimiter; }
+            set { this._delimiter = value; }
+        }
+
         private List<string> Fields
         {
             get { return this._fields; }
@@ -80,5 +86,6 @@ namespace CsvToNewInstance
         private int _lineCount;
         private string _className;
         private List<string> _fields;
+        private char _delimiter = ',';
     }
 }
