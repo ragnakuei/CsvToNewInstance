@@ -39,23 +39,25 @@ namespace CsvToNewInstance
                 return;
             }
 
-            var fileStream = new StreamReader(this._fileAbsolutePath);
-            string eachLine = string.Empty;
-
-            try
+            using (var fileStream = new StreamReader(this._fileAbsolutePath))
             {
-                this._converter.LineCount = 0;
-                while ((eachLine = fileStream.ReadLine()) != null)
+                string eachLine = string.Empty;
+
+                try
                 {
-                    this._converter.InputEachLine(eachLine);
+                    this._converter.LineCount = 0;
+                    while ((eachLine = fileStream.ReadLine()) != null)
+                    {
+                        this._converter.InputEachLine(eachLine);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
-            tbxResult.Text = this._converter.Result;
+                tbxResult.Text = this._converter.Result;
         }
 
         private void cbxDelimiter_SelectedIndexChanged(object sender, EventArgs e)
