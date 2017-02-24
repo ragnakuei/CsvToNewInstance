@@ -41,7 +41,7 @@ namespace CsvToNewInstance
 
             this._converter.InitialPrivateData();
 
-            using (var fileStream = new StreamReader(this._fileAbsolutePath))
+            using (var fileStream = new StreamReader(this._fileAbsolutePath, System.Text.Encoding.Default))
             {
                 string eachLine = string.Empty;
 
