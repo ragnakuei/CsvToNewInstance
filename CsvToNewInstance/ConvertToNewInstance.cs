@@ -44,8 +44,8 @@ namespace CsvToNewInstance
         public void InitialPrivateData()
         {
             LineCount = 0;
-            ClassName = string.Empty;
-            Fields = new List<string>();
+            // ClassName = string.Empty;
+            // Fields = new List<string>();
             ResultByList = new List<string>();
         }
 
@@ -83,9 +83,9 @@ namespace CsvToNewInstance
             set { this._fields = value; }
         }
 
-        private int _lineCount;
-        private string _className;
-        private List<string> _fields;
+        private int _lineCount = 0 ;
+        private string _className = string.Empty;
+        private List<string> _fields = new List<string>();
         private char _delimiter = ',';
     }
 }

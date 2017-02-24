@@ -39,6 +39,8 @@ namespace CsvToNewInstance
                 return;
             }
 
+            this._converter.InitialPrivateData();
+
             using (var fileStream = new StreamReader(this._fileAbsolutePath))
             {
                 string eachLine = string.Empty;
